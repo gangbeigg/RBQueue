@@ -55,7 +55,7 @@ void* RBQueue::pop(uint16_t& len) {
   Msg* msg = (Msg*)(_queue + (_tail & (_capacity - 1)));
   if (msg->len == 0) {
     _tail = 0;
-    return NULL;
+    msg = (Msg*)_queue;
   }
   uint16_t msgTotalLen = Msg::MSG_HEAD_LEN + msg->len;
   _tail += msgTotalLen;
